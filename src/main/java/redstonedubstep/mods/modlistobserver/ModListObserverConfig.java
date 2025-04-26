@@ -29,6 +29,8 @@ public class ModListObserverConfig {
 		public IntValue broadcastPermissionLevel;
 		public IntValue receiveBroadcastPermissionLevel;
 		public ForgeConfigSpec.ConfigValue<List<String>> allowlist;
+		public ForgeConfigSpec.ConfigValue<List<String>> whitelist;
+		public ForgeConfigSpec.ConfigValue<List<String>> blacklist;
 
 		Config(ForgeConfigSpec.Builder builder) {
 			logJoiningModList = builder
@@ -55,6 +57,12 @@ public class ModListObserverConfig {
 			allowlist = builder
 					.comment("A comma-separated list of mod ids that are allowed by the server and thus shouldn't be recorded and logged. Example: [\"jei\", \"neat\"]")
 					.define("allowlist", new ArrayList<>());
+			whitelist = builder
+					.comment("A list of mod IDs that are allowed on the server. Players with mods not in this list will be denied access. Example: [\"jei\", \"neat\"]")
+					.define("whitelist", new ArrayList<>());
+			blacklist = builder
+					.comment("A list of mod IDs that are not allowed on the server. Players with mods in this list will be denied access. Example: [\"jei\", \"neat\"]")
+					.define("blacklist", new ArrayList<>());
 		}
 	}
 }
